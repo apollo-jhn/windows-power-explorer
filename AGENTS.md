@@ -18,6 +18,7 @@
 3. **Registry Writes:** Use `winreg` strictly for visibility attributes (`Attributes = 2` to show, `1` to hide), which requires Administrator privileges.
 4. **C-FFI:** Ensure all `ctypes` bindings handle memory ownership and buffer protocols properly. Comment C-FFI boundaries extensively.
 5. **UI Thread:** Win32 I/O and enumerations must run on a background worker thread. Do not block the `customtkinter` main loop.
+6. **GitHub Workflow:** When creating an issue or pull request, always add appropriate metadata (labels) and set the assignee to the creator of the PR.
 
 ## Commands
 - **Run:** `python main.py`
