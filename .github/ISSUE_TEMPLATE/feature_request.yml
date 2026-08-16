@@ -1,0 +1,50 @@
+name: Feature Request
+description: Suggest an idea or enhancement for Windows Power Explorer
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest a feature!
+        Please verify that the feature isn't already requested or being worked on in existing issues.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Is your feature request related to a problem?
+      description: A clear and concise description of what the problem is. (e.g., I'm always frustrated when...)
+    validations:
+      required: false
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe the solution you'd like
+      description: A clear and concise description of what you want to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Describe alternatives you've considered
+      description: A clear and concise description of any alternative solutions or features you've considered.
+    validations:
+      required: false
+
+  - type: textarea
+    id: win32_api
+    attributes:
+      label: Win32 API Considerations (Optional)
+      description: If you know the specific `PowrProf.dll`, `kernel32.dll`, or Registry keys involved, please detail them here. (See Win32 API Reference docs)
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Validation
+      options:
+        - label: I have searched the existing issues to make sure this feature has not already been requested.
+          required: true
