@@ -31,6 +31,7 @@ from core.models import (
     ValueChange,
 )
 from core.power_manager import PowerManager
+from core.state import AppState
 from core.values import (
     assemble_power_scheme,
     assemble_power_setting,
@@ -70,6 +71,7 @@ __all__ = [
     "SubgroupCatalogEntry",
     "SettingCatalog",
     "SchemeValues",
+    "AppState",
     "GUID",
     "parse_guid",
     "is_elevated",
