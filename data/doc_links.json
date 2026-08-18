@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "description": "Microsoft Learn documentation links for known Windows power settings",
+  "links": {
+    "be337238-0d82-4146-a960-4f3749d470c7": "https://learn.microsoft.com/en-us/windows-hardware/customize/power-settings/processor-power-management-options",
+    "bc502fe6-701e-46c4-9826-5d42490a1e9c": "https://learn.microsoft.com/en-us/windows-hardware/customize/power-settings/processor-power-management-options#maximum-processor-state",
+    "893dee8e-2bef-41e0-89c6-b55d0929964c": "https://learn.microsoft.com/en-us/windows-hardware/customize/power-settings/processor-power-management-options#minimum-processor-state",
+    "36687f9e-e3a5-4dbf-b1dc-15eb381c6863": "https://learn.microsoft.com/en-us/windows-hardware/customize/power-settings/processor-power-management-options#energy-performance-preference",
+    "29f6c1db-86da-48c5-9fdb-f2b67b1f44da": "https://learn.microsoft.com/en-us/windows-hardware/customize/power-settings/sleep-settings-standby-timeout",
+    "9d781540-c208-4e0e-82a7-281279580e92": "https://learn.microsoft.com/en-us/windows-hardware/customize/power-settings/sleep-settings-hibernate-timeout",
+    "ee12f906-d277-404b-b6da-e5fa1a576df5": "https://learn.microsoft.com/en-us/windows-hardware/customize/power-settings/pci-express-settings-link-state-power-management"
+  }
+}

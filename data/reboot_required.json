@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "description": "Settings requiring system reboot or power-state cycle to take effect",
+  "guids": [
+    "ee12f906-d277-404b-b6da-e5fa1a576df5",
+    "8baa4a8a-14fc-4829-bd5e-168809490b46",
+    "48672f25-7a9a-4db0-84ac-a3f253f63002"
+  ]
+}

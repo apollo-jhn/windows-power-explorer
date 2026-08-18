@@ -345,6 +345,89 @@ class AppController:
 
         self._notify("value_changed", (setting_guid, rail, actual_val))
 
+    def reset_setting_value(
+        self,
+        subgroup_guid: str,
+        setting_guid: str,
+        rail: str = "both",
+    ) -> bool:
+        """Reset a setting to its personality default (REQ-9.3).
+
+        rail may be 'ac', 'dc', or 'both'. Returns True if at least one rail was reset.
+        """
+        target_scheme = self.state.selected_scheme_guid or self.state.active_scheme_guid
+        if not target_scheme:
+            return False
+
+        personality = self.pm.personality_of(target_scheme)
+        key = setting_guid.lower()
+        reset_any = False
+
+        if rail in ("ac", "both"):
+            ac_def = (
+                self.state.values.ac_default.get(key)
+                if self.state.values
+                else None
+            )
+            if ac_def is None:
+                ac_def = self.pm.read_ac_default(personality, subgroup_guid, setting_guid)
+            if ac_def is not None:
+                self.write_setting_value(subgroup_guid, setting_guid, ac_def, rail="ac")
+                reset_any = True
+
+        if rail in ("dc", "both") and self.state.has_battery:
+            dc_def = (
+                self.state.values.dc_default.get(key)
+                if self.state.values
+                else None
+            )
+            if dc_def is None:
+                dc_def = self.pm.read_dc_default(personality, subgroup_guid, setting_guid)
+            if dc_def is not None:
+                self.write_setting_value(subgroup_guid, setting_guid, dc_def, rail="dc")
+                reset_any = True
+
+        return reset_any
+
+    def apply_setting_to_custom_schemes(
+        self,
+        subgroup_guid: str,
+        setting_guid: str,
+        ac_val: int | None = None,
+        dc_val: int | None = None,
+    ) -> list[str]:
+        """Apply a setting value across all custom (non-built-in) schemes (REQ-11.4).
+
+        Returns list of updated scheme GUIDs.
+        """
+        bounds = None
+        if self.state.catalog and setting_guid.lower() in self.state.catalog.by_guid:
+            entry = self.state.catalog.by_guid[setting_guid.lower()]
+            bounds = (entry.min_value, entry.max_value)
+
+        updated_schemes = []
+        for s in self.state.schemes:
+            if s.is_base_default:
+                continue
+            try:
+                if ac_val is not None:
+                    self.pm.write_ac_value(s.guid, subgroup_guid, setting_guid, ac_val, bounds)
+                if dc_val is not None and self.state.has_battery:
+                    self.pm.write_dc_value(s.guid, subgroup_guid, setting_guid, dc_val, bounds)
+                updated_schemes.append(s.guid)
+            except Exception as exc:
+                logger.warning(f"Failed bulk applying setting to scheme {s.guid}: {exc}")
+
+        # Update currently loaded values if the selected scheme is among them
+        if self.state.values and self.state.selected_scheme_guid in updated_schemes:
+            key = setting_guid.lower()
+            if ac_val is not None:
+                self.state.values.ac[key] = ac_val
+            if dc_val is not None:
+                self.state.values.dc[key] = dc_val
+
+        return updated_schemes
+
     def undo(self) -> bool:
         """Restore the single previous setting value (REQ-11.1)."""
         change = self.state.last_change
