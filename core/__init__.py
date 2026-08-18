@@ -3,6 +3,7 @@
 from core.__version__ import __version__, __version_info__
 from core.catalog import build_catalog
 from core.compare import compare_schemes, get_modified_settings
+from core.controller import AppController
 from core.errors import (
     ElevationDeclinedError,
     ElevationRequiredError,
@@ -72,6 +73,7 @@ __all__ = [
     "SettingCatalog",
     "SchemeValues",
     "AppState",
+    "AppController",
     "GUID",
     "parse_guid",
     "is_elevated",
