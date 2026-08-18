@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "description": "Curated starter settings for Windows Power Explorer Essentials view",
+  "settings": [
+    {
+      "guid": "be337238-0d82-4146-a960-4f3749d470c7",
+      "subgroup_guid": "54533251-82be-4824-96c1-47b60b740d00",
+      "name": "Processor performance boost mode",
+      "category": "Processor"
+    },
+    {
+      "guid": "bc502fe6-701e-46c4-9826-5d42490a1e9c",
+      "subgroup_guid": "54533251-82be-4824-96c1-47b60b740d00",
+      "name": "Maximum processor state",
+      "category": "Processor"
+    },
+    {
+      "guid": "893dee8e-2bef-41e0-89c6-b55d0929964c",
+      "subgroup_guid": "54533251-82be-4824-96c1-47b60b740d00",
+      "name": "Minimum processor state",
+      "category": "Processor"
+    },
+    {
+      "guid": "36687f9e-e3a5-4dbf-b1dc-15eb381c6863",
+      "subgroup_guid": "54533251-82be-4824-96c1-47b60b740d00",
+      "name": "Energy Performance Preference",
+      "category": "Processor"
+    },
+    {
+      "guid": "29f6c1db-86da-48c5-9fdb-f2b67b1f44da",
+      "subgroup_guid": "238c2580-6d33-40e6-b0e1-6f8ab212569b",
+      "name": "Sleep after",
+      "category": "Sleep"
+    },
+    {
+      "guid": "9d781540-c208-4e0e-82a7-281279580e92",
+      "subgroup_guid": "238c2580-6d33-40e6-b0e1-6f8ab212569b",
+      "name": "Hibernate after",
+      "category": "Sleep"
+    },
+    {
+      "guid": "7bc4a2f9-d8fc-4469-b07b-33eb785aaca0",
+      "subgroup_guid": "238c2580-6d33-40e6-b0e1-6f8ab212569b",
+      "name": "System unattended sleep timeout",
+      "category": "Sleep"
+    },
+    {
+      "guid": "3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e",
+      "subgroup_guid": "7516b93f-93b8-45fa-a0ef-66f338476080",
+      "name": "Turn off display after",
+      "category": "Display"
+    },
+    {
+      "guid": "ee12f906-d277-404b-b6da-e5fa1a576df5",
+      "subgroup_guid": "501a4d13-42af-4429-9dec-46ef4f5b0833",
+      "name": "Link State Power Management",
+      "category": "PCI Express"
+    },
+    {
+      "guid": "6738e2c4-e8a5-4142-f15e-f0c94ed0e37e",
+      "subgroup_guid": "0012ee47-9041-4b5d-9b77-535fba8b1442",
+      "name": "Turn off hard disk after",
+      "category": "Hard Disk"
+    }
+  ]
+}
