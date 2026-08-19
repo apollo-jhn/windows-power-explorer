@@ -266,6 +266,41 @@ class AppController:
             )
         self._notify("scheme_selected", scheme_guid)
 
+    def create_scheme(
+        self,
+        source_scheme_guid: str,
+        new_name: str,
+        description: str = "",
+    ) -> str:
+        """Create a new custom scheme by duplicating a base scheme (REQ-1.1, REQ-1.2, REQ-1.4)."""
+        new_guid = self.pm.duplicate_scheme(source_scheme_guid, new_name)
+        if description:
+            try:
+                self.pm.write_description(new_guid, None, None, description)
+            except Exception:
+                pass
+
+        # Re-read schemes from OS and select new scheme
+        self.load_initial_data()
+        self.select_scheme(new_guid)
+        self._notify("scheme_created", new_guid)
+        return new_guid
+
+    def delete_scheme(self, scheme_guid: str) -> None:
+        """Delete a custom power scheme (REQ-1.3)."""
+        self.pm.delete_scheme(scheme_guid)
+        if self.state.selected_scheme_guid == scheme_guid:
+            self.state.selected_scheme_guid = self.state.active_scheme_guid
+        self.load_initial_data()
+        self._notify("scheme_deleted", scheme_guid)
+
+    def set_active_scheme(self, scheme_guid: str) -> None:
+        """Activate a power scheme system-wide."""
+        self.pm.set_active_scheme(scheme_guid)
+        self.state.active_scheme_guid = scheme_guid
+        self.refresh(full=False)
+        self._notify("scheme_activated", scheme_guid)
+
     def refresh(self, full: bool = False) -> None:
         """Refresh power state.
 
