@@ -4,6 +4,7 @@ Provides accessible, focus-trapping modal dialogs with keyboard support (Escape/
 destructive styling, optional typed-phrase gating, and fallback startup error handling.
 """
 
+import sys
 import tkinter.messagebox
 from typing import Any, Callable
 
@@ -136,7 +137,8 @@ class ConfirmDialog(BaseDialog):
                 text=f"Type '{self.required_phrase}' to enable confirmation:",
                 font=FONT_BODY,
                 text_color=COLOR_TEXT_PRIMARY,
-            ).pack(padx=20, pady=(0, 4), anchor="w")
+                anchor="w",
+            ).pack(padx=20, pady=(0, 4), fill="x")
 
             self.phrase_entry = ctk.CTkEntry(self, font=FONT_BODY)
             self.phrase_entry.pack(padx=20, pady=(0, 10), fill="x")

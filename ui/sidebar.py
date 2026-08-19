@@ -9,7 +9,6 @@ Features:
 - Tools: Compare Schemes (⇄), Control Panel Visibility (👁), Restore Defaults (♻)
 """
 
-import tkinter as tk
 from typing import Any, Callable
 
 import customtkinter as ctk
@@ -26,7 +25,6 @@ from ui.theme import (
     COLOR_TEXT_MUTED,
     COLOR_TEXT_PRIMARY,
     COLOR_TEXT_SECONDARY,
-    COLOR_WARNING,
     FONT_BODY,
     FONT_BODY_BOLD,
     FONT_SMALL,
