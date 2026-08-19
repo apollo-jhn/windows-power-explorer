@@ -51,6 +51,7 @@ class CommandPalette(BaseDialog):
         on_select_setting: Callable[[str, str], None] | None = None,
         on_select_category: Callable[[str], None] | None = None,
         on_create_scheme: Callable[[], None] | None = None,
+        on_open_export: Callable[[], None] | None = None,
         on_open_compare: Callable[[], None] | None = None,
         on_open_visibility: Callable[[], None] | None = None,
         **kwargs: Any,
@@ -60,6 +61,7 @@ class CommandPalette(BaseDialog):
         self.on_select_setting = on_select_setting
         self.on_select_category = on_select_category
         self.on_create_scheme = on_create_scheme
+        self.on_open_export = on_open_export
         self.on_open_compare = on_open_compare
         self.on_open_visibility = on_open_visibility
 
@@ -77,6 +79,8 @@ class CommandPalette(BaseDialog):
         # 1. Commands
         if self.on_create_scheme:
             self.all_items.append(PaletteItem("Command", "Create Custom Power Scheme", "Clone an existing scheme to a new profile (Ctrl+N)", self.on_create_scheme))
+        if self.on_open_export:
+            self.all_items.append(PaletteItem("Command", "Export Current Scheme", "Export scheme to JSON, powercfg batch, or Markdown (Ctrl+E)", self.on_open_export))
         if self.on_open_compare:
             self.all_items.append(PaletteItem("Command", "Compare Schemes", "Side-by-side comparison of two power schemes (Ctrl+D)", self.on_open_compare))
         if self.on_open_visibility:

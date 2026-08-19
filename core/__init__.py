@@ -16,6 +16,11 @@ from core.errors import (
     ValueOutOfBoundsError,
     user_message,
 )
+from core.instance import (
+    acquire_single_instance_mutex,
+    activate_existing_window,
+    release_single_instance_mutex,
+)
 from core.models import (
     ControlType,
     EnumStats,
@@ -86,4 +91,7 @@ __all__ = [
     "assemble_power_scheme",
     "compare_schemes",
     "get_modified_settings",
+    "acquire_single_instance_mutex",
+    "activate_existing_window",
+    "release_single_instance_mutex",
 ]

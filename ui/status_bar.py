@@ -31,6 +31,7 @@ class StatusBar(ctk.CTkFrame):
             **kwargs,
         )
         self.controller = controller
+        self._toast_job: Any = None
         self._build_ui()
 
     def _build_ui(self) -> None:
@@ -65,9 +66,32 @@ class StatusBar(ctk.CTkFrame):
 
     def set_status(self, message: str, is_busy: bool = False) -> None:
         """Update transient status text."""
+        if self._toast_job is not None:
+            self.after_cancel(self._toast_job)
+            self._toast_job = None
+
         self.status_label.configure(
             text=f"● {message}",
             text_color=COLOR_PRIMARY if is_busy else COLOR_TEXT_MUTED,
+        )
+
+    def show_toast(self, message: str, duration_ms: int = 4000) -> None:
+        """Display a transient footer status toast that auto-clears after duration_ms (ADR-011)."""
+        if self._toast_job is not None:
+            self.after_cancel(self._toast_job)
+            self._toast_job = None
+
+        self.status_label.configure(
+            text=f"✓ {message}",
+            text_color=COLOR_PRIMARY,
+        )
+        self._toast_job = self.after(duration_ms, self._clear_toast)
+
+    def _clear_toast(self) -> None:
+        self._toast_job = None
+        self.status_label.configure(
+            text="● System Ready",
+            text_color=COLOR_TEXT_MUTED,
         )
 
     def refresh(self) -> None:
